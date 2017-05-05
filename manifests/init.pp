@@ -6,9 +6,17 @@
 #
 # Document parameters here.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [hsh_hosts]
+#   default value : {}
+#   Hash of host entries of type host (example below)
+#     'server.domain.local' = {
+#	ip:'1.2.3.4',
+#	host_aliases:['server','mygoodalias']
+#	}
+#
+#  [bln_purge]
+#    default value : true
+#    boolean to purge /etc/hosts file before setting it
 #
 # === Variables
 #
@@ -29,13 +37,25 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Sebastien LONGO <sebastien.longo@oufy.net>
 #
-# === Copyright
+# === Licensing :  2017 GPLv3 Sebastien LONGO
 #
-# Copyright 2017 Your name here, unless otherwise noted.
-#
-class cls_conf_hosts {
+class cls_conf_hosts($hsh_hosts={},$bln_purge=true) {
 
+  class {'hosts':
+    purge_hosts			=>	$bln_purge,
+    host_entries		=>	$hsh_hosts,
+    enable_fqdn_entry		=>	false,
+    enable_ipv4_localhost	=>	true,
+    enable_ipv6_localhost	=>	true,
+#    localhost_aliases		=>	['localhost',
+#					'localhost.localdomain',
+#					'localhost4',
+#					'localhost4.localdomain4'],
+    localhost6_aliases		=>	['localhost',
+					'localhost.localdomain',
+					'localhost6'],
+  }
 
 }
