@@ -1,6 +1,6 @@
 {
   "name": "oufy-cls_conf_hosts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "oufy",
   "summary": "Manage /etc/hosts entries",
   "license": "GPLv3",

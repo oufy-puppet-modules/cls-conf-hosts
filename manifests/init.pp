@@ -41,7 +41,7 @@
 #
 # === Licensing :  2017 GPLv3 Sebastien LONGO
 #
-class cls_conf_hosts($hsh_hosts,$bln_purge) {
+class cls_conf_hosts($hsh_hosts={},$bln_purge=true) {
 
   class {'hosts':
     purge_hosts			=>	$bln_purge,
